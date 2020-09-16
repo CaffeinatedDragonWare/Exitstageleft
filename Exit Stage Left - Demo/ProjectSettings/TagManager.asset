@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Wall
+    uniqueID: 3326958277
+    locked: 0
+  - name: Stage
+    uniqueID: 1098058003
+    locked: 0
+  - name: Character
+    uniqueID: 2259897501
+    locked: 0
+  - name: Enemies
+    uniqueID: 2059135707
+    locked: 0
+  - name: Curtains
+    uniqueID: 2864282591
+    locked: 0
+  - name: Audience
+    uniqueID: 1575176729
+    locked: 0
+  - name: Meter
+    uniqueID: 1343839909
+    locked: 0
