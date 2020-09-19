@@ -9,7 +9,7 @@ public class enemiesSpawn : MonoBehaviour {
     public GameObject dude01;
   
     Vector2 whereToSpawn;
-    public float spawnRate = 1f;
+    public float spawnRate = 2f;
     float nextSpawn = 0.0f;
     float x = 4f; // x value
     float y = 0.09f; // y value
@@ -28,8 +28,6 @@ public class enemiesSpawn : MonoBehaviour {
       
       if (Time.time > nextSpawn) {
         
-         x = x * -1; // enemy spawns on oppose side each time
-        
         nextSpawn = Time.time + spawnRate; // controls amount of enemies spawned at a time
         whereToSpawn = new Vector2 (x, y); // controls where the enemy is spawned
         random = Random.Range(0, 2);
@@ -45,6 +43,8 @@ public class enemiesSpawn : MonoBehaviour {
           duplicateFemales++;
           duplicateMales = 0;
         }
+        
+        x = x * -1; // enemy spawns on oppose side each time
         
       }
     }

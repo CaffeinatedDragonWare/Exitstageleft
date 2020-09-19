@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class enemyMovement : MonoBehaviour {
   
-    public float speed = 1f;
+    public float speed = 2f;
     Transform LeftCurtain, RightCurtain;
     Vector3 localScale;
     Rigidbody2D rb;
     bool movingRight = true;
+    int direction = 0;
   
     // Start is called before the first frame update
     void Start()
@@ -21,8 +22,6 @@ public class enemyMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-      
-        
       
         if (transform.position.x > RightCurtain.position.x) { // move left
           movingRight = false;
@@ -55,6 +54,7 @@ public class enemyMovement : MonoBehaviour {
       localScale.x = -1;
       transform.localScale = localScale;
       rb.velocity = new Vector2 (localScale.x * speed, rb.velocity.y);
+      
     }
   
 }
