@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 513517645968545295}
   - component: {fileID: 513517645968545294}
   - component: {fileID: 1554177543402381863}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: enemy000lady
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,12 +71,12 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2035069795
-  m_SortingLayer: 3
+  m_SortingLayerID: -2046284845
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ab254f36f094ed8449da0f74875cc2a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.71, y: 1.5}
@@ -144,4 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3384b5d8bd52742ac1bbaae8be4ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 5

@@ -9,13 +9,14 @@ public class enemiesSpawn : MonoBehaviour {
     public GameObject dude01;
   
     Vector2 whereToSpawn;
-    public float spawnRate = 2f;
+    public float spawnRate = 1f;
     float nextSpawn = 0.0f;
-    float x = 2f; // x value
+    float x = 4f; // x value
     float y = 0.09f; // y value
     int random = 0;
-    public static bool walkRight = false;
-    public static bool walkLeft = false;
+    int duplicateMales = 0;
+    int duplicateFemales = 0;
+    // public static bool walkingRight = false;
   
     // Start is called before the first frame update
     void Start() {
@@ -27,28 +28,22 @@ public class enemiesSpawn : MonoBehaviour {
       
       if (Time.time > nextSpawn) {
         
-        x = x * -1; // enemy spawned on oppose side each time
-        if (x > 1) {
-          walkRight = false;
-          walkLeft = true;
-        }
-        
-        else if (x < 1) {
-          walkRight = true;
-          walkLeft = false;
-        }
+         x = x * -1; // enemy spawns on oppose side each time
         
         nextSpawn = Time.time + spawnRate; // controls amount of enemies spawned at a time
         whereToSpawn = new Vector2 (x, y); // controls where the enemy is spawned
+        random = Random.Range(0, 2);
         
-        if (random == 0) {
+        if (random == 0 ^ duplicateMales == 2) {
           Instantiate (dude01, whereToSpawn, Quaternion.identity); // spawns enemies
-          random = 1;
+          duplicateMales++;
+          duplicateFemales = 0;
         }
         
-        else if (random == 1) {
+        if (random == 1 ^ duplicateFemales == 2) {
           Instantiate (lady01, whereToSpawn, Quaternion.identity); // spawns enemies
-          random = 0;
+          duplicateFemales++;
+          duplicateMales = 0;
         }
         
       }
