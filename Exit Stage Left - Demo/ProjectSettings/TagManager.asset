@@ -50,9 +50,6 @@ TagManager:
   - name: Character
     uniqueID: 2259897501
     locked: 0
-  - name: Enemies
-    uniqueID: 2059135707
-    locked: 0
   - name: Curtains
     uniqueID: 2864282591
     locked: 0
