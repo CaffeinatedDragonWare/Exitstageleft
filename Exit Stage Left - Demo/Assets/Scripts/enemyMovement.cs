@@ -9,13 +9,13 @@ public class enemyMovement : MonoBehaviour {
     Vector3 localScale;
     Rigidbody2D rb;
     bool movingRight = true;
-    int direction = 0;
   
     // Start is called before the first frame update
     void Start()
     {
         localScale = transform.localScale;
         rb = GetComponent<Rigidbody2D> ();
+        //Player = GameObject.FindGameObjectsWithTag("Player").GetComponent<Transform> ();
         LeftCurtain = GameObject.Find("LeftCurtain").GetComponent<Transform> ();
         RightCurtain = GameObject.Find("RightCurtain").GetComponent<Transform> ();
     }
