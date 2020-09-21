@@ -9,7 +9,7 @@ public class enemiesSpawn : MonoBehaviour {
     public GameObject dude01;
   
     Vector2 whereToSpawn;
-    public float spawnRate = 2f;
+    public float spawnRate = 1f;
     float nextSpawn = 0.0f;
     float x = 4f; // x value
     float y = 0.09f; // y value
@@ -17,11 +17,6 @@ public class enemiesSpawn : MonoBehaviour {
     int duplicateMales = 0;
     int duplicateFemales = 0;
     // public static bool walkingRight = false;
-  
-    // Start is called before the first frame update
-    void Start() {
-        
-    }
 
     // Update is called once per frame
     void Update() {
@@ -29,6 +24,9 @@ public class enemiesSpawn : MonoBehaviour {
       if (Time.time > nextSpawn) {
         
         nextSpawn = Time.time + spawnRate; // controls amount of enemies spawned at a time
+//        if (enemyMovement.PlayerPushed == true){
+//          x = 4f;
+//        }
         whereToSpawn = new Vector2 (x, y); // controls where the enemy is spawned
         random = Random.Range(0, 2);
         
