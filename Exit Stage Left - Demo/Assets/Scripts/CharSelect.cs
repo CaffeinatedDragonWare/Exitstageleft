@@ -5,8 +5,8 @@ using UnityEngine;
 public class CharSelect : MonoBehaviour {
     
     public static int selection = 3;
-    bool buttonPressed1 = true;
-    bool buttonPressed2 = false;
+    bool buttonPressed1 = false;
+    bool buttonPressed2 = true;
     
     // Start is called before the first frame update
     void Start() {

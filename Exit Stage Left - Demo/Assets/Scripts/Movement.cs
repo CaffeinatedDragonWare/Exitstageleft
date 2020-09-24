@@ -76,11 +76,15 @@ public class Movement : MonoBehaviour {
       }
         
       // Uses TouchScreen input to move character right or left
-      if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+      if (Gameover.GameOver == true) { // stop character from moving on gameover
+        
+      }
+      
+      else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
 		startTouchPosition = Input.GetTouch(0).position;
       }
 		
-      if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
+      else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
 		endTouchPosition = Input.GetTouch(0).position;
             
             // Jump

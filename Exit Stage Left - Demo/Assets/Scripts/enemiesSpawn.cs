@@ -30,13 +30,17 @@ public class enemiesSpawn : MonoBehaviour {
         whereToSpawn = new Vector2 (x, y); // controls where the enemy is spawned
         random = Random.Range(0, 2);
         
-        if (random == 0 ^ duplicateMales == 2) {
+        if (Gameover.GameOver == true) { // stops enemies from spawning on gameover
+          random = -1;
+        }
+        
+        else if (random == 0 ^ duplicateMales == 2) {
           Instantiate (dude01, whereToSpawn, Quaternion.identity); // spawns enemies
           duplicateMales++;
           duplicateFemales = 0;
         }
         
-        if (random == 1 ^ duplicateFemales == 2) {
+        else if (random == 1 ^ duplicateFemales == 2) {
           Instantiate (lady01, whereToSpawn, Quaternion.identity); // spawns enemies
           duplicateFemales++;
           duplicateMales = 0;

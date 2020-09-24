@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemyMovement : MonoBehaviour {
   
-    public float speed = 2f;
+    public float speed = 1f;
     Transform LeftCurtain, RightCurtain;
     Vector3 localScale;
     Rigidbody2D rb;
@@ -25,11 +25,15 @@ public class enemyMovement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
       
-        if (transform.position.x > RightCurtain.position.x) { // move left
+        if (Gameover.GameOver == true) {
+          movingRight = false;
+        }
+      
+        else if (transform.position.x > RightCurtain.position.x) { // move left
           movingRight = false;
         }
         
-        if (transform.position.x < LeftCurtain.position.x) { // move right
+        else if (transform.position.x < LeftCurtain.position.x) { // move right
           movingRight = true;
         }
       
@@ -60,45 +64,6 @@ public class enemyMovement : MonoBehaviour {
       
     }
   
-    //Detect collisions between the GameObjects with Colliders attached
-    void OnCollisionEnter2D(Collision2D collision) 
-    {
-        if (collision.gameObject.tag == "Player") {
-          
-            Physics2D.IgnoreLayerCollision(8, 8, false);
-            
-            if (movingRight == true && PlayerPushed == false){
-              PlayerPushedRight = true;
-            }
-          
-            PlayerPushed = true;
-          }
-          
-        if (collision.gameObject.tag != "Player" && PlayerPushed == true) {
-          Physics2D.IgnoreLayerCollision(8, 8, true);
-          PlayerPushed = false;
-        }
-      
-        if (PlayerPushed == true) {
-          
-          if (PlayerPushedRight == true) {
-            moveRight();
-          }
-          
-          if (PlayerPushedRight == false) {
-            moveLeft();
-          }
-          
-        }
-          /*if (movingRight == true) {
-            moveLeft();
-          }
-          
-          else {
-            moveRight();
-          }*/
-          
-    }
 }
   
   
