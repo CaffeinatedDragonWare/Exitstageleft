@@ -11,11 +11,12 @@ public class enemiesSpawn : MonoBehaviour {
     Vector2 whereToSpawn;
     public float spawnRate = 1f;
     float nextSpawn = 0.0f;
-    float x = 4f; // x value
+    float x = 4.1f; // x value
     float y = 0.09f; // y value
     int random = 0;
     int duplicateMales = 0;
     int duplicateFemales = 0;
+    public static float birthplace = 0;
     // public static bool walkingRight = false;
 
     // Update is called once per frame
@@ -28,9 +29,14 @@ public class enemiesSpawn : MonoBehaviour {
 //          x = 4f;
 //        }
         whereToSpawn = new Vector2 (x, y); // controls where the enemy is spawned
+        birthplace = x;
         random = Random.Range(0, 2);
         
         if (Gameover.GameOver == true) { // stops enemies from spawning on gameover
+          random = -1;
+        }
+        
+        else if (Movement.gameStarted == false) {
           random = -1;
         }
         

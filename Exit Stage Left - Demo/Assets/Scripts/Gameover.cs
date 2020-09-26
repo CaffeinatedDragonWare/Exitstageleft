@@ -11,7 +11,7 @@ public class Gameover : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "enemy") {
         
-          Debug.Log("Gameover and stuff");
+          //Debug.Log("Gameover and stuff");
           GameOver = true;
           
           

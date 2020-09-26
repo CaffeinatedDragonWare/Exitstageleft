@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour {
     int frameCounter = 0;
     bool ducking = false;
     int duckingFrames = 150; // change to 30 when building and 150 when live testing
+    public static bool gameStarted = false;
     
     // sprites
     public Sprite bow0;
@@ -41,8 +42,8 @@ public class Movement : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
       
-      Debug.Log("startTouchPosition: " + startTouchPosition);
-      Debug.Log("endTouchPosition: " + endTouchPosition);
+//      Debug.Log("startTouchPosition: " + startTouchPosition);
+//      Debug.Log("endTouchPosition: " + endTouchPosition);
       
       // return to original pose once on ground
       // velocity is used to calculate when character is on the ground
@@ -75,17 +76,18 @@ public class Movement : MonoBehaviour {
         ducking = false;
       }
         
-      // Uses TouchScreen input to move character right or left
       if (Gameover.GameOver == true) { // stop character from moving on gameover
         
       }
       
+      // Uses TouchScreen input to move character right or left
       else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
 		startTouchPosition = Input.GetTouch(0).position;
       }
 		
       else if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
 		endTouchPosition = Input.GetTouch(0).position;
+        gameStarted = true;
             
             // Jump
             if (endTouchPosition.y > (startTouchPosition.y + 80) && transform.position.y < 0.2f) {
