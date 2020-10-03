@@ -18,12 +18,17 @@ public class enemiesSpawn : MonoBehaviour {
     int duplicateFemales = 0;
     public static List<float> birthplace = new List<float>();
     public static List<GameObject> enemiesSpawned = new List<GameObject>();
+    bool ready = false;
     // public static bool walkingRight = false;
 
     // Update is called once per frame
     void Update() {
 
-      if (Time.time > nextSpawn) {
+      if (ready == false) {
+        StartCoroutine(delay());
+      }
+
+      else if (Time.time > nextSpawn && ready == true) {
 
         nextSpawn = Time.time + spawnRate; // controls amount of enemies spawned at a time
 //        if (enemyMovement.PlayerPushed == true){
@@ -36,9 +41,9 @@ public class enemiesSpawn : MonoBehaviour {
           random = -1;
         }
 
-        else if (Movement.gameStarted == false) {
-          random = -1;
-        }
+        // else if (Movement.gameStarted == false) {
+        //   random = -1;
+        // }
 
         else if (random == 0 ^ duplicateMales == 2) {
           Instantiate (dude01, whereToSpawn, Quaternion.identity); // spawns enemies
@@ -59,5 +64,11 @@ public class enemiesSpawn : MonoBehaviour {
         x = x * -1; // enemy spawns on oppose side each time
 
       }
+
+    }
+
+    IEnumerator delay() {
+        yield return new WaitForSeconds(2);
+        ready = true;
     }
 }

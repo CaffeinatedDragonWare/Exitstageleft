@@ -6,6 +6,13 @@ public class Gameover : MonoBehaviour {
 
     public static float pushDirection = 0;
     public static bool GameOver = false;
+    Transform LeftCurtain, RightCurtain;
+
+
+    void Start() {
+      LeftCurtain = GameObject.Find("LeftCurtain").GetComponent<Transform> ();
+      RightCurtain = GameObject.Find("RightCurtain").GetComponent<Transform> ();
+    }
 
     //Detect collisions between the GameObjects with Colliders attached
     void OnCollisionEnter2D(Collision2D collision) {
@@ -21,6 +28,8 @@ public class Gameover : MonoBehaviour {
             Debug.Log("Hit cords: " + hitPos.normal);
             pushDirection = hitPos.normal.x;
             GameOver = true;
+            // StartCoroutine(delay());
+
           }
 
         }
@@ -39,4 +48,21 @@ public class Gameover : MonoBehaviour {
 //        }
 
     }
+
+    void Update() {
+
+      GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+      if (player.transform.position.x > RightCurtain.position.x ^ player.transform.position.x < LeftCurtain.position.x) {
+        Application.LoadLevel("Gameover");
+        GameOver = false;
+      }
+
+    }
+
+    // IEnumerator delay() {
+    //     yield return new WaitForSeconds(3);
+    //     Application.LoadLevel("Gameover");
+    //     GameOver = false;
+    // }
 }
