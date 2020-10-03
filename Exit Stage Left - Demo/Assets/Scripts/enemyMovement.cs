@@ -39,9 +39,9 @@ public class enemyMovement : MonoBehaviour {
 
         }
 
-        if (Movement.gameStarted == false) {
-
-        }
+        // if (Movement.gameStarted == false) {
+        //
+        // }
 
         // sets normal movement direction
         else if (transform.position.x > RightCurtain.position.x && directionSet == false) { // move left
@@ -53,11 +53,11 @@ public class enemyMovement : MonoBehaviour {
         }
 
         // makes enemies move in set direction
-        if (movingRight == true && Movement.gameStarted == true) {
+        if (movingRight == true) { // && Movement.gameStarted == true
           moveRight();
         }
 
-        else if (movingRight == false && Movement.gameStarted == true) {
+        else if (movingRight == false) { // && Movement.gameStarted == true
           moveLeft();
         }
 

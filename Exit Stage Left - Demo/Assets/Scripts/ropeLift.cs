@@ -7,7 +7,6 @@ public class ropeLift : MonoBehaviour {
     Vector3 localScale;
     Rigidbody2D rb;
     int speed = 4;
-    float landing = 0;
 
     void Start() {
         localScale = transform.localScale;

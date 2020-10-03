@@ -23,12 +23,12 @@ public class PlayerSpawn : MonoBehaviour
 
       spawnPoint = new Vector2 (0, 6); // controls where the player is spawned
 
-      if (CharSelect.selection == 0 && spawned == false) { // && Movement.gameStarted == true
+      if (CharSelect.selection == "Male" && spawned == false) { // && Movement.gameStarted == true
         Instantiate (Male001, spawnPoint , Quaternion.identity);
         spawned = true;
       }
 
-      else if (CharSelect.selection == 1 && spawned == false) { // && Movement.gameStarted == true
+      else if (CharSelect.selection == "Female" && spawned == false) { // && Movement.gameStarted == true
         Instantiate (Female001, spawnPoint , Quaternion.identity);
         spawned = true;
       }
