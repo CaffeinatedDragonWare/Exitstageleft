@@ -7,6 +7,9 @@ public class Gameover : MonoBehaviour {
     public static float pushDirection = 0;
     public static bool GameOver = false;
     Transform LeftCurtain, RightCurtain;
+    float x;
+    //int count = 0;
+    bool changed = false;
 
 
     void Start() {
@@ -21,14 +24,16 @@ public class Gameover : MonoBehaviour {
         //
         // }
 
-        if (collision.gameObject.tag == "Player") {
+        if (collision.gameObject.tag == "Player" && GameOver == false) {
 
           foreach(ContactPoint2D hitPos in collision.contacts) {
 
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
             Debug.Log("Hit cords: " + hitPos.normal);
             pushDirection = hitPos.normal.x;
             GameOver = true;
-            // StartCoroutine(delay());
+            x = player.transform.position.x;
+            //count = 0;
 
           }
 
@@ -56,13 +61,29 @@ public class Gameover : MonoBehaviour {
       if (player.transform.position.x > RightCurtain.position.x ^ player.transform.position.x < LeftCurtain.position.x) {
         Application.LoadLevel("Gameover");
         GameOver = false;
+        spotLightSelect.selection = false;
+        ropeLift.GameStarted = true;
       }
 
-    }
 
-    // IEnumerator delay() {
-    //     yield return new WaitForSeconds(3);
-    //     Application.LoadLevel("Gameover");
-    //     GameOver = false;
-    // }
+      // if(GameOver == true && ropeLift.GameStarted == false) {
+      //
+      //   if(player.transform.position.x == x && count > 7 && changed == false) {
+      //
+      //     // during game over all enemies move left
+      //     if (Gameover.pushDirection < 0) {
+      //       enemyMovement.movingRight = false;
+      //       changed = true;
+      //     }
+      //
+      //     // during game over all enemies move right
+      //     if (Gameover.pushDirection > 0) {
+      //       enemyMovement.movingRight = true;
+      //       changed = true;
+      //     }
+      //   }
+      // }
+
+      //count++;
+    }
 }

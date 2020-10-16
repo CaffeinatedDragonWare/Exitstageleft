@@ -10,8 +10,7 @@ public class PlayerSpawn : MonoBehaviour
     public GameObject Male001;
     Vector2 spawnPoint;
     Rigidbody2D rb;
-    float x = 4.1f; // x value
-    float y = 0.09f; // y value
+    float y = 6f; // y value
     bool spawned = false;
     // bool gravityAdjusted = false;
 
@@ -21,14 +20,14 @@ public class PlayerSpawn : MonoBehaviour
 
     void Update() {
 
-      spawnPoint = new Vector2 (0, 6); // controls where the player is spawned
+      spawnPoint = new Vector2 (spotLightSelect.x, y); // controls where the player is spawned
 
-      if (CharSelect.selection == "Male" && spawned == false) { // && Movement.gameStarted == true
+      if (CharSelect.selection == "Male" && spawned == false && spotLightSelect.selection == true) { // && Movement.gameStarted == true
         Instantiate (Male001, spawnPoint , Quaternion.identity);
         spawned = true;
       }
 
-      else if (CharSelect.selection == "Female" && spawned == false) { // && Movement.gameStarted == true
+      else if (CharSelect.selection == "Female" && spawned == false && spotLightSelect.selection == true) { // && Movement.gameStarted == true
         Instantiate (Female001, spawnPoint , Quaternion.identity);
         spawned = true;
       }

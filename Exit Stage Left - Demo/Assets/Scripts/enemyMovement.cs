@@ -23,7 +23,7 @@ public class enemyMovement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if (Gameover.GameOver == true && directionSet == false) {
+        if (Gameover.GameOver == true && directionSet == false && ropeLift.GameStarted == false) {
 
           // during game over all enemies move right
           if (Gameover.pushDirection < 0) {
@@ -39,37 +39,33 @@ public class enemyMovement : MonoBehaviour {
 
         }
 
-        // if (Movement.gameStarted == false) {
-        //
-        // }
-
         // sets normal movement direction
-        else if (transform.position.x > RightCurtain.position.x && directionSet == false) { // move left
+        else if (transform.position.x > RightCurtain.position.x && Gameover.GameOver == false) { // move left
           movingRight = false;
         }
 
-        else if (transform.position.x < LeftCurtain.position.x && directionSet == false) { // move right
+        else if (transform.position.x < LeftCurtain.position.x && Gameover.GameOver == false) { // move right
           movingRight = true;
         }
 
         // makes enemies move in set direction
-        if (movingRight == true) { // && Movement.gameStarted == true
+        if (movingRight == true && ropeLift.GameStarted == false) { // && Movement.gameStarted == true
           moveRight();
         }
 
-        else if (movingRight == false) { // && Movement.gameStarted == true
+        else if (movingRight == false && ropeLift.GameStarted == false) { // && Movement.gameStarted == true
           moveLeft();
         }
 
         // despawns enemies once they reach the other side of the screen
-        if (enemiesSpawn.birthplace[0] == RightCurtain.position.x && transform.position.x <     LeftCurtain.position.x) { // move left
+        if (enemiesSpawn.birthplace[0] == RightCurtain.position.x && transform.position.x < LeftCurtain.position.x) { // move left
           Destroy(gameObject);
           enemiesSpawn.birthplace.RemoveAt(0);
           enemiesSpawn.enemiesSpawned.RemoveAt(0);
 
         }
 
-        else if (enemiesSpawn.birthplace[0] == LeftCurtain.position.x && transform.position.x >     RightCurtain.position.x) { // move right
+        else if (enemiesSpawn.birthplace[0] == LeftCurtain.position.x && transform.position.x > RightCurtain.position.x) { // move right
           Destroy(gameObject);
           enemiesSpawn.birthplace.RemoveAt(0);
           enemiesSpawn.enemiesSpawned.RemoveAt(0);

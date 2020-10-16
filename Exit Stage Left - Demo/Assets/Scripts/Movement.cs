@@ -35,6 +35,7 @@ public class Movement : MonoBehaviour {
     int newRandomPose = 0;
     int oldRandomPose = 0;
     bool justSpawned = true;
+    bool jumped = false;
 
     private void Start() {
       rb = GetComponent<Rigidbody2D>();
@@ -56,16 +57,18 @@ public class Movement : MonoBehaviour {
         justSpawned = false;
       }
 
-      if (rb.velocity.y < -7 && facingRight == true) {
+      else if (player.transform.position.y < 0.016 && facingRight == true && jumped == true) {
         PoseRight();
+        jumped = false;
       }
 
-      else if (rb.velocity.y < -7 && facingLeft == true) {
+      else if (player.transform.position.y < 0.016 && facingLeft == true && jumped == true) {
         PoseLeft();
+        jumped = false;
       }
 
-      else if (rb.velocity.y < -7 && facingLeft == false && facingRight == false) {
-
+      else if (player.transform.position.y < 0.016 && facingLeft == false && facingRight == false && jumped == true) {
+        jumped = false;
       }
 
       // return to original pose after ducking
@@ -99,15 +102,17 @@ public class Movement : MonoBehaviour {
         // gameStarted = true;
 
             // Jump
-            if (endTouchPosition.y > (startTouchPosition.y + 80) && transform.position.y < 0.2f) {
+            if (endTouchPosition.y > (startTouchPosition.y + 90) && transform.position.y < 0.2f) {
+
+              jumped = true;
 
               // jump left
-              if (facingLeft) {
+              if (facingLeft == true) {
                 JumpLeft();
               }
 
               // jump right
-              else if (facingRight) {
+              else if (facingRight == true) {
                 JumpRight();
               }
 
@@ -118,7 +123,7 @@ public class Movement : MonoBehaviour {
             }
 
             // Duck
-            if ((endTouchPosition.y + 80) < startTouchPosition.y && transform.position.y < 1f) {
+            if ((endTouchPosition.y + 90) < startTouchPosition.y && transform.position.y < 1f) {
 
               // duck right
               if (facingRight == true) {
@@ -148,6 +153,7 @@ public class Movement : MonoBehaviour {
               // Move if not in the air
               if (transform.position.y < 1f) {
                 transform.position = new Vector2(transform.position.x - 1.25f, transform.position.y);
+                spotLightSelect.x -= 1.25f;
                 facingRight = false;
                 facingLeft = true; // facing left
                 oldRandomPose = newRandomPose;
@@ -168,6 +174,7 @@ public class Movement : MonoBehaviour {
               // Move if not in the air
               if (transform.position.y < 1f) {
                 transform.position = new Vector2(transform.position.x + 1.25f, transform.position.y);
+                spotLightSelect.x += 1.25f;
                 facingRight = true; // facing right
                 facingLeft = false;
                 oldRandomPose = newRandomPose;

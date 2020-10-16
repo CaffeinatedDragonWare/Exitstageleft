@@ -52,7 +52,7 @@ public class preGameMovement : MonoBehaviour {
       transform.localScale = localScale;
       rb.velocity = new Vector2 (localScale.x * speed, rb.velocity.y);
     }
-    
+
     void moveLeft() {
 
       movingRight = false;
