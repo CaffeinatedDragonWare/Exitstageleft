@@ -55,6 +55,9 @@ TagManager:
   - name: Enemy
     uniqueID: 2248682451
     locked: 0
+  - name: Spotlight
+    uniqueID: 1895247813
+    locked: 0
   - name: Curtains
     uniqueID: 2864282591
     locked: 0
