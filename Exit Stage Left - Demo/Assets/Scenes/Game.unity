@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 53643458}
   - component: {fileID: 53643457}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,8 +339,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 244, y: -190}
-  m_SizeDelta: {x: 1000, y: 500}
+  m_AnchoredPosition: {x: 50, y: -44}
+  m_SizeDelta: {x: 520, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &96372133
 MonoBehaviour:
@@ -355,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -364,18 +364,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 100
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 100
     m_Alignment: 0
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Score
+  m_Text: 000000000
 --- !u!222 &96372134
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -396,9 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f1dedc63b303d42a03a5ddb47d333a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreBox: {fileID: 0}
-  yourScoreBox: {fileID: 0}
-  highScoreBox: {fileID: 0}
+  scoreBox: {fileID: 96372133}
 --- !u!1 &126384678
 GameObject:
   m_ObjectHideFlags: 0
@@ -888,8 +886,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreBox: {fileID: 96372133}
-  yourScoreBox: {fileID: 0}
-  highScoreBox: {fileID: 0}
 --- !u!4 &572715683
 Transform:
   m_ObjectHideFlags: 0
@@ -1030,8 +1026,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -687, y: 467}
-  m_SizeDelta: {x: 550, y: 150}
+  m_AnchoredPosition: {x: -685, y: 424.33}
+  m_SizeDelta: {x: 550, y: 231.34912}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &598398619
 MonoBehaviour:
@@ -1053,7 +1049,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 209428cd841d3c84c935fb80849923fb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -36,6 +36,7 @@ public class ropeLift : MonoBehaviour {
 
     IEnumerator delay() {
       yield return new WaitForSeconds(2);
+      Destroy(gameObject);
       Gameover.GameOver = false;
       GameStarted = false;
     }

@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour {
     public Sprite jazzL;
     public Sprite jazzR;
     public Sprite jumpL;
+    // public Animation anim;
     public Sprite jumpR;
     public Sprite duckL;
     public Sprite duckR;
@@ -39,6 +40,7 @@ public class Movement : MonoBehaviour {
 
     private void Start() {
       rb = GetComponent<Rigidbody2D>();
+      //anim = gameObject.GetComponent<Animation>();
     }
 
     // Update is called once per frame
@@ -248,6 +250,7 @@ public class Movement : MonoBehaviour {
 
       // makes character jump left
       public void JumpLeft() {
+        //anim.Play("JumpL");
         this.gameObject.GetComponent<SpriteRenderer>().sprite = jumpL;
         rb.AddForce (Vector2.up * jumpForce);
       }
@@ -262,6 +265,5 @@ public class Movement : MonoBehaviour {
       public void JumpForward() {
         rb.AddForce (Vector2.up * jumpForce);
       }
-
 
 }

@@ -7,13 +7,13 @@ public class Score : MonoBehaviour {
 
     public Text scoreBox;
     int score = 0;
-    public static string highScoreBox = "High Score: 000000000";
-    public static string yourScoreBox = "Your Score: 000000000";
+    public static string highScoreBox = "000000000";
+    public static string yourScoreBox = "000000000";
     float scoreUpdateInterval = 0;
     int placeHolderLimit = 10;
     string placeHolders = "00000000";
-    string highScorePlaceHolders = "0000";
-    int highScore = 10000;
+    public static string highScorePlaceHolders = "00000000";
+    public static int highScore = 0;
     // Start is called before the first frame update
     void Start() {
       scoreBox.text = "000000000"; // nine 0s
@@ -43,8 +43,8 @@ public class Score : MonoBehaviour {
       }
 
       if (Gameover.GameOver == true) {
-        yourScoreBox = "Your Score: " + placeHolders + score;
-        highScoreBox = "High Score: " + highScorePlaceHolders + highScore;
+        yourScoreBox = placeHolders + score;
+        highScoreBox = highScorePlaceHolders + highScore;
       }
 
     }
