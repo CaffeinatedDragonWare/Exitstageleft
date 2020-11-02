@@ -58,17 +58,16 @@ public class enemyMovement : MonoBehaviour {
         }
 
         // despawns enemies once they reach the other side of the screen
-        if (enemiesSpawn.birthplace[0] == RightCurtain.position.x && transform.position.x < LeftCurtain.position.x) { // move left
+        if (enemiesSpawn.birthplace[0] == RightCurtain.position.x && transform.position.x < LeftCurtain.position.x) {
           Destroy(gameObject);
           enemiesSpawn.birthplace.RemoveAt(0);
-          enemiesSpawn.enemiesSpawned.RemoveAt(0);
-
+          enemiesSpawn.enemiesSpawned -= 1;
         }
 
-        else if (enemiesSpawn.birthplace[0] == LeftCurtain.position.x && transform.position.x > RightCurtain.position.x) { // move right
+        else if (enemiesSpawn.birthplace[0] == LeftCurtain.position.x && transform.position.x > RightCurtain.position.x) {
           Destroy(gameObject);
           enemiesSpawn.birthplace.RemoveAt(0);
-          enemiesSpawn.enemiesSpawned.RemoveAt(0);
+          enemiesSpawn.enemiesSpawned -= 1;
         }
 
     }

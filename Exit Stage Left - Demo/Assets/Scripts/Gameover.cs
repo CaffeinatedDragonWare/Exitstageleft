@@ -63,6 +63,7 @@ public class Gameover : MonoBehaviour {
         GameOver = false;
         spotLightSelect.selection = false;
         ropeLift.GameStarted = true;
+        enemiesSpawn.enemiesSpawned = 0;
       }
 
 

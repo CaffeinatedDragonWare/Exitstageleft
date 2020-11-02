@@ -115,6 +115,10 @@ MonoBehaviour:
   jumpR: {fileID: 21300000, guid: 62ea9078047a18c45afbf3884df50f09, type: 3}
   duckL: {fileID: 21300000, guid: 45b30aec31f9f9c4d995ebcbacf26b8d, type: 3}
   duckR: {fileID: 21300000, guid: 3d5563920efcc37459e7bf7c8712c3b2, type: 3}
+  stageLayerMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  boxCollider2d: {fileID: 2552180535289247312}
 --- !u!50 &2843934262422237392
 Rigidbody2D:
   serializedVersion: 4

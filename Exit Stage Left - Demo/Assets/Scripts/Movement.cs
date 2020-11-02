@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour {
     bool facingLeft = false;
     int frameCounter = 0;
     bool ducking = false;
+    bool Grounded = false;
     int duckingFrames = 150; // change to 30 when building and 150 when live testing
     // public static bool gameStarted = false;
 
@@ -37,6 +38,9 @@ public class Movement : MonoBehaviour {
     int oldRandomPose = 0;
     bool justSpawned = true;
     bool jumped = false;
+    float timeInterval = 0;
+    [SerializeField] public LayerMask stageLayerMask;
+    public BoxCollider2D boxCollider2d;
 
     private void Start() {
       rb = GetComponent<Rigidbody2D>();
@@ -54,24 +58,32 @@ public class Movement : MonoBehaviour {
 
       GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-      if (player.transform.position.y < 0.016 && justSpawned == true) {
+      Debug.Log("raycast: " + Grounded);
+
+      if (Grounded == false) {
+        jumped = true;
+      }
+
+      else if (Grounded == true && justSpawned == true) {
         PoseForward();
         justSpawned = false;
       }
 
-      else if (player.transform.position.y < 0.016 && facingRight == true && jumped == true) {
+      else if (Grounded == true && facingRight == true && jumped == true) {
         PoseRight();
         jumped = false;
       }
 
-      else if (player.transform.position.y < 0.016 && facingLeft == true && jumped == true) {
+      else if (Grounded == true && facingLeft == true && jumped == true) {
         PoseLeft();
         jumped = false;
       }
 
-      else if (player.transform.position.y < 0.016 && facingLeft == false && facingRight == false && jumped == true) {
+      else if (Grounded == true && facingLeft == false && facingRight == false && jumped == true) {
         jumped = false;
       }
+
+      Grounded = IsGrounded();
 
       // return to original pose after ducking
       // frame counter is used to delay ducking animation
@@ -105,8 +117,6 @@ public class Movement : MonoBehaviour {
 
             // Jump
             if (endTouchPosition.y > (startTouchPosition.y + 90) && transform.position.y < 0.2f) {
-
-              jumped = true;
 
               // jump left
               if (facingLeft == true) {
@@ -264,6 +274,22 @@ public class Movement : MonoBehaviour {
       // makes character jump forward
       public void JumpForward() {
         rb.AddForce (Vector2.up * jumpForce);
+      }
+
+      public bool IsGrounded() {
+        float extraHeight = 0.1f;
+        RaycastHit2D raycastHitBox = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, extraHeight, stageLayerMask);
+
+        if (raycastHitBox.collider == null) {
+          //Debug.Log("raycast: Null");
+          return false;
+        }
+
+        else {
+          //Debug.Log("raycast: " + raycastHitBox.collider);
+          return true;
+        }
+
       }
 
 }

@@ -6,7 +6,7 @@ public class ropeLift : MonoBehaviour {
 
     Vector3 localScale;
     Rigidbody2D rb;
-    int speed = 5;
+    int speed = 6;
     public static bool GameStarted = true;
 
     void Start() {
@@ -36,7 +36,6 @@ public class ropeLift : MonoBehaviour {
 
     IEnumerator delay() {
       yield return new WaitForSeconds(2);
-      Destroy(gameObject);
       Gameover.GameOver = false;
       GameStarted = false;
     }
