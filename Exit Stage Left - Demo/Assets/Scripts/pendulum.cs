@@ -9,7 +9,7 @@ public class pendulum : MonoBehaviour {
   void Start() {
       var hinge = GetComponent<HingeJoint2D>();
       var motor = hinge.motor;
-      hinge.useMotor = true;
+      hinge.useMotor = false;
       motor.motorSpeed = 0;
       motor.maxMotorTorque = 10000;
       hinge.useLimits = false;
@@ -17,6 +17,8 @@ public class pendulum : MonoBehaviour {
   }
 
   void Update() {
+    ;
+    Debug.Log("The current prop angle is: " + GetComponent<HingeJoint2D>().jointAngle + "degrees");
 
     if (command == "left") {
       var hinge = GetComponent<HingeJoint2D>();
@@ -37,6 +39,10 @@ public class pendulum : MonoBehaviour {
       var motor = hinge.motor;
       motor.motorSpeed = 0;
       hinge.motor = motor;
+    }
+
+    else if (command == "reset") {
+      transform.Rotate (0,0,-180f,Space.Self);
     }
 
     // else if (command == "reset") {
