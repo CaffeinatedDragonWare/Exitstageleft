@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class selection : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     public void propDirection(string recordedCommand) {
 
-      pendulum.command = recordedCommand;
-      
+      // string lastCommand = "null";
+
+      // if (pendulum.command == lastCommand) {
+      //   pendulum.command = "nothing";
+      // }
+      //
+      // else {
+        pendulum.command = recordedCommand;
+      //   lastCommand = pendulum.command;
+      // }
+
     }
 }
