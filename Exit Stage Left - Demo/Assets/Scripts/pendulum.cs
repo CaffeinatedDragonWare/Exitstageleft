@@ -7,78 +7,45 @@ public class pendulum : MonoBehaviour {
   public static string command = "nothing";
   public bool moving = false;
   public string lastCommand;
-  public int resetAngleRight = -180;
-  public int resetAngleLeft = 540;
-  public bool leftChanged = false;
-  public bool rightChanged = false;
-  public bool leftIsReset = false;
-  public bool rightIsReset = false;
+  int resetAngle = 0;
+  public string inputLock = "null";
   public string status = "none";
-
-  void Start() {
-      var hinge = GetComponent<HingeJoint2D>();
-      var motor = hinge.motor;
-      hinge.useMotor = false;
-      motor.motorSpeed = 0;
-      motor.maxMotorTorque = 10000;
-      hinge.useLimits = false;
-      hinge.motor = motor;
-
-  }
+  public int leftRotations = 0;
+  public int rightRotations = 0;
 
   void Update() {
     Debug.Log("The current prop angle is: " + GetComponent<HingeJoint2D>().jointAngle + "degrees");
-    Debug.Log(status);
+    Debug.Log("rightRotations: " + rightRotations + " leftRotations: " + leftRotations + " resetAngleLeft: " + resetAngle);
 
-    // if (moving == true && GetComponent<HingeJoint2D>().jointAngle >= 540 || GetComponent<HingeJoint2D>().jointAngle <= -180) {
-    //   var hinge = GetComponent<HingeJoint2D>();
-    //   var motor = hinge.motor;
-    //   motor.motorSpeed = 0;
-    //   hinge.motor = motor;
-    //   moving = false;
-    //   lastCommand = command;
-    // }
-
-    if (command == "left") { // figure out how swing the prop left or right twice in a row rather than toggle
+    if (command == "left") {
 
       var hinge = GetComponent<HingeJoint2D>();
       var motor = hinge.motor;
 
-      if (hinge.jointAngle <= resetAngleLeft) {
+      if (inputLock != "left") {
+        inputLock = "left";
+        leftRotations += 1;
+        resetAngle = 180 + (360 * leftRotations) - (360 * rightRotations);
+      }
+
+      if (hinge.jointAngle <= resetAngle) {
         motor.motorSpeed = 100;
         hinge.motor = motor;
         moving = true;
       }
 
-      if (hinge.jointAngle >= resetAngleLeft) {
+      if (hinge.jointAngle >= resetAngle) {
 
-        if (leftIsReset == true) {
-          if (hinge.jointAngle >= resetAngleLeft) {
-            motor.motorSpeed = -10;
-            hinge.motor = motor;
-          }
-
-          if (hinge.jointAngle <= resetAngleLeft) {
-            motor.motorSpeed = 0;
-            hinge.motor = motor;
-          }
+        if (hinge.jointAngle >= resetAngle) {
+          motor.motorSpeed = -10;
+          hinge.motor = motor;
         }
 
-        else if (leftChanged == true) {
-          leftChanged = false;
-          resetAngleLeft = 540;
-          status = "Command: Stopped + Updated";
-          leftIsReset = true;
-          rightIsReset = false;
+        if (hinge.jointAngle <= resetAngle) {
+          motor.motorSpeed = 0;
+          hinge.motor = motor;
         }
 
-        else if (leftChanged == false) {
-          resetAngleRight = 180;
-          leftChanged = true;
-          status = "Command: Stopped";
-          leftIsReset = true;
-          rightIsReset = false;
-        }
       }
     }
 
@@ -87,40 +54,28 @@ public class pendulum : MonoBehaviour {
       var hinge = GetComponent<HingeJoint2D>();
       var motor = hinge.motor;
 
-      if (hinge.jointAngle >= resetAngleRight) {
+      if (inputLock != "right") {
+        inputLock = "right";
+        rightRotations += 1;
+        resetAngle = 180 + (360 * leftRotations) - (360 * rightRotations);
+      }
+
+      if (hinge.jointAngle >= resetAngle) { // still moving or ready to move
         motor.motorSpeed = -100;
         hinge.motor = motor;
         moving = true;
       }
 
-      if (hinge.jointAngle <= resetAngleRight) {
+      if (hinge.jointAngle <= resetAngle) { // reached the reset position
 
-        if (rightIsReset == true) {
-          if (hinge.jointAngle <= resetAngleRight) {
-            motor.motorSpeed = 10;
-            hinge.motor = motor;
-          }
-
-          else if (hinge.jointAngle >= resetAngleRight) {
-            motor.motorSpeed = 0;
-            hinge.motor = motor;
-          }
+        if (hinge.jointAngle <= resetAngle) { // counters drift by returning to correct position
+          motor.motorSpeed = 10;
+          hinge.motor = motor;
         }
 
-        else if (rightChanged == true) {
-          rightChanged = false;
-          resetAngleRight = -180;
-          status = "Command: Updated";
-          rightIsReset = true;
-          leftIsReset = false;
-        }
-
-        else if (rightChanged == false) {
-          resetAngleRight = 180;
-          rightChanged = true;
-          status = "Command: Stopped";
-          rightIsReset = true;
-          leftIsReset = false;
+        else if (hinge.jointAngle >= resetAngle) { // stops when in correct position
+          motor.motorSpeed = 0;
+          hinge.motor = motor;
         }
       }
     }
@@ -133,20 +88,9 @@ public class pendulum : MonoBehaviour {
       moving = false;
     }
 
-    else if (command == "clear") {
-      rightIsReset = false;
-      leftIsReset = false;
-    }
-
-    // else if (command == "reset") {
-    //   // transform.Rotate (0,0,-180f,Space.Self);
-    //   var hinge = GetComponent<HingeJoint2D>();
-    //
-    // }
-
-    // else if (command == "reset") {
-    //   hinge.motor = motor;
-    // }
+    else if (command == "clear" && inputLock != "clear") {
+        inputLock = "clear";
+      }
 
   }
 }
