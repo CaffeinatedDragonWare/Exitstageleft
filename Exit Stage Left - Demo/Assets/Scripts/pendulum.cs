@@ -5,13 +5,15 @@ using UnityEngine;
 public class pendulum : MonoBehaviour {
 
   public static string command = "nothing";
-  public bool moving = false;
   public string lastCommand;
   int resetAngle = 0;
   public string inputLock = "null";
   public string status = "none";
   public int leftRotations = 0;
   public int rightRotations = 0;
+  public static float propWarningDelay = 0;
+  public static int delay = 2;
+  public static bool StageHandHidden = true;
 
   void Update() {
     Debug.Log("The current prop angle is: " + GetComponent<HingeJoint2D>().jointAngle + "degrees");
@@ -26,12 +28,19 @@ public class pendulum : MonoBehaviour {
         inputLock = "left";
         leftRotations += 1;
         resetAngle = 180 + (360 * leftRotations) - (360 * rightRotations);
+        StageHandHidden = false;
       }
 
-      if (hinge.jointAngle <= resetAngle) {
+      propWarningDelay += Time.deltaTime;
+      Debug.Log("Warning! Prop will swing in from the left side!");
+
+      if (hinge.jointAngle <= resetAngle && propWarningDelay > delay) {
         motor.motorSpeed = 100;
         hinge.motor = motor;
-        moving = true;
+      }
+
+      if (resetAngle - 270 <= GetComponent<HingeJoint2D>().jointAngle) {
+        StageHandHidden = true;
       }
 
       if (hinge.jointAngle >= resetAngle) {
@@ -58,12 +67,19 @@ public class pendulum : MonoBehaviour {
         inputLock = "right";
         rightRotations += 1;
         resetAngle = 180 + (360 * leftRotations) - (360 * rightRotations);
+        StageHandHidden = false;
       }
 
-      if (hinge.jointAngle >= resetAngle) { // still moving or ready to move
+      propWarningDelay += Time.deltaTime;
+      Debug.Log("Warning! Prop will swing in from the right side!");
+
+      if (hinge.jointAngle >= resetAngle && propWarningDelay > delay) { // still moving or ready to move
         motor.motorSpeed = -100;
         hinge.motor = motor;
-        moving = true;
+      }
+
+      if (resetAngle + 270 >= GetComponent<HingeJoint2D>().jointAngle) {
+        StageHandHidden = true;
       }
 
       if (hinge.jointAngle <= resetAngle) { // reached the reset position
@@ -85,12 +101,11 @@ public class pendulum : MonoBehaviour {
       var motor = hinge.motor;
       motor.motorSpeed = 0;
       hinge.motor = motor;
-      moving = false;
     }
 
     else if (command == "clear" && inputLock != "clear") {
         inputLock = "clear";
-      }
+    }
 
   }
 }

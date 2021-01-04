@@ -1162,6 +1162,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e38316f5499a04fb6500b9686e5cec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &808581064 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8016587087371218001, guid: d5b404f4b302f6c4abf4633e69d7fc5b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1875714145780016249}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &808581065
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 808581064}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.85, y: 1.68}
+    newSize: {x: 1.85, y: 1.68}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.85, y: 1.68}
+  m_EdgeRadius: 0
 --- !u!1 &828736181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,6 +1913,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: propMoon
       objectReference: {fileID: 0}
+    - target: {fileID: 8016587087164748957, guid: d5b404f4b302f6c4abf4633e69d7fc5b,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8016587087164748959, guid: d5b404f4b302f6c4abf4633e69d7fc5b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1889,7 +1926,7 @@ PrefabInstance:
     - target: {fileID: 8016587087164748959, guid: d5b404f4b302f6c4abf4633e69d7fc5b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 10.33
+      value: 10.65
       objectReference: {fileID: 0}
     - target: {fileID: 8016587087164748959, guid: d5b404f4b302f6c4abf4633e69d7fc5b,
         type: 3}

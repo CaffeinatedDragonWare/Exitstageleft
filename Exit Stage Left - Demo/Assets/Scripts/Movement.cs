@@ -6,12 +6,16 @@ public class Movement : MonoBehaviour {
 
     private Vector2 startTouchPosition, endTouchPosition;
     private Rigidbody2D rb;
+    public BoxCollider2D HitBox;
     private float jumpForce = 300f;
     bool facingRight = false;
     bool facingLeft = false;
     int frameCounter = 0;
     bool ducking = false;
     bool Grounded = false;
+    public Vector2 HitBoxSize;
+    public Vector2 HitBoxOffset;
+
     int duckingFrames = 150; // change to 30 when building and 150 when live testing
     // public static bool gameStarted = false;
 
@@ -39,11 +43,30 @@ public class Movement : MonoBehaviour {
     bool justSpawned = true;
     bool jumped = false;
     float timeInterval = 0;
+    float X = 0.124f;
+    float DuckingY = 0.83f;
+    float NormalY = 1.22f;
+    float NormalOffsetY;
+    float DuckingOffsetY;
+    float OffsetX;
     [SerializeField] public LayerMask stageLayerMask;
     public BoxCollider2D boxCollider2d;
 
     private void Start() {
       rb = GetComponent<Rigidbody2D>();
+      HitBox = GetComponent<BoxCollider2D>();
+
+      if (CharSelect.selection == "Male") {
+        OffsetX = 0.113f;
+        DuckingOffsetY = -0.2f;
+        NormalOffsetY = 0f;
+      }
+
+      else if (CharSelect.selection == "Female") {
+        OffsetX = 0.135f;
+        DuckingOffsetY = -0.25f;
+        NormalOffsetY = -0.05f;
+      }
       //anim = gameObject.GetComponent<Animation>();
     }
 
@@ -58,7 +81,7 @@ public class Movement : MonoBehaviour {
 
       GameObject player = GameObject.FindGameObjectWithTag("Player");
 
-      Debug.Log("raycast: " + Grounded);
+      // Debug.Log("raycast: " + Grounded);
 
       if (Grounded == false) {
         jumped = true;
@@ -87,19 +110,29 @@ public class Movement : MonoBehaviour {
 
       // return to original pose after ducking
       // frame counter is used to delay ducking animation
-      if (frameCounter == duckingFrames && ducking == true && facingRight == true) {
-        PoseRight();
-        ducking = false;
-      }
+      if (frameCounter == duckingFrames && ducking == true) {
 
-      else if (frameCounter == duckingFrames && ducking == true && facingLeft == true) {
-        PoseLeft();
-        ducking = false;
-      }
+        if (facingRight == true) {
+          PoseRight();
+          ducking = false;
 
-      else if (frameCounter == duckingFrames && ducking == true && facingLeft == false && facingRight == false) {
-        PoseForward();
-        ducking = false;
+        }
+
+        else if (facingLeft == true) {
+          PoseLeft();
+          ducking = false;
+        }
+
+        else if (facingLeft == false && facingRight == false) {
+          PoseForward();
+          ducking = false;
+        }
+
+        HitBoxSize = new Vector2(X, NormalY);
+        HitBoxOffset = new Vector2(OffsetX, NormalOffsetY);
+        HitBox.size = HitBoxSize;
+        HitBox.offset = HitBoxOffset;
+
       }
 
       if (Gameover.GameOver == true) { // stop character from moving on gameover
@@ -157,6 +190,11 @@ public class Movement : MonoBehaviour {
                 frameCounter = 0;
                 ducking = true;
               }
+
+              HitBoxSize = new Vector2(X, DuckingY);
+              HitBoxOffset = new Vector2(OffsetX, DuckingOffsetY);
+              HitBox.size = HitBoxSize;
+              HitBox.offset = HitBoxOffset;
             }
 
             // Move Left
