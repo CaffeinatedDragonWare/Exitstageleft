@@ -16,6 +16,7 @@ public class fallingProps : MonoBehaviour {
   float shadowY = -3.62f;
   public static List<float> birthplace = new List<float>();
   float lastX = 0f;
+  float delay;
   // public static bool walkingRight = false;
 
   // Update is called once per frame
@@ -35,5 +36,11 @@ public class fallingProps : MonoBehaviour {
       whereToSpawn = new Vector2 (x, fallingY); // controls where the prop is spawned
       Instantiate (obj003prop1moon, whereToSpawn, Quaternion.identity); // spawns the prop
     }
+
+    if (delay < 1.5) {
+      obj003prop1moon.transform.position = new Vector2(x, 8f);
+    }
+
+    delay += Time.deltaTime;
   }
 }
