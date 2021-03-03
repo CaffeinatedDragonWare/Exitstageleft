@@ -44,11 +44,12 @@ public class Movement : MonoBehaviour {
     bool jumped = false;
     float timeInterval = 0;
     float X = 0.124f;
-    float DuckingY = 0.83f;
+    float DuckingY = 0.5f;
     float NormalY = 1.22f;
     float NormalOffsetY;
     float DuckingOffsetY;
     float OffsetX;
+    string lastDuckPose = "french";
     [SerializeField] public LayerMask stageLayerMask;
     public BoxCollider2D boxCollider2d;
 
@@ -58,13 +59,13 @@ public class Movement : MonoBehaviour {
 
       if (CharSelect.selection == "Male") {
         OffsetX = 0.113f;
-        DuckingOffsetY = -0.2f;
+        DuckingOffsetY = -0.4f;
         NormalOffsetY = 0f;
       }
 
       else if (CharSelect.selection == "Female") {
         OffsetX = 0.135f;
-        DuckingOffsetY = -0.25f;
+        DuckingOffsetY = -0.45f;
         NormalOffsetY = -0.05f;
       }
       //anim = gameObject.GetComponent<Animation>();
@@ -172,14 +173,34 @@ public class Movement : MonoBehaviour {
 
               // duck right
               if (facingRight == true) {
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = duckR;
+
+                if (lastDuckPose == "french") {
+                  this.gameObject.GetComponent<SpriteRenderer>().sprite = duckR;
+                  lastDuckPose = "duck";
+                }
+
+                else {
+                  this.gameObject.GetComponent<SpriteRenderer>().sprite = frenchR;
+                  lastDuckPose = "french";
+                }
+
                 frameCounter = 0;
                 ducking = true;
               }
 
               // duck left
               else if (facingLeft == true) {
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = duckL;
+
+                if (lastDuckPose == "french") {
+                  this.gameObject.GetComponent<SpriteRenderer>().sprite = duckL;
+                  lastDuckPose = "duck";
+                }
+
+                else {
+                  this.gameObject.GetComponent<SpriteRenderer>().sprite = frenchL;
+                  lastDuckPose = "french";
+                }
+
                 frameCounter = 0;
                 ducking = true;
               }
@@ -209,7 +230,7 @@ public class Movement : MonoBehaviour {
                 oldRandomPose = newRandomPose;
 
                 while (oldRandomPose == newRandomPose) { // ensures each pose is unique
-                  newRandomPose = Random.Range(1, 5); // picks random pose
+                  newRandomPose = Random.Range(1, 4); // picks random pose
                 }
 
                 PoseLeft();
@@ -230,7 +251,7 @@ public class Movement : MonoBehaviour {
                 oldRandomPose = newRandomPose;
 
                 while (oldRandomPose == newRandomPose) { // ensures each pose is unique
-                  newRandomPose = Random.Range(1, 5); // picks random pose
+                  newRandomPose = Random.Range(1, 4); // picks random pose
                 }
 
                 PoseRight();
@@ -251,15 +272,12 @@ public class Movement : MonoBehaviour {
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = defR;
                 break;
               case 2:
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = frenchR;
-                break;
-              case 3:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = dabR;
                 break;
-              case 4:
+              case 3:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = rockR;
                 break;
-              case 5:
+              case 4:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = jazzR;
                 break;
               default:
@@ -275,15 +293,12 @@ public class Movement : MonoBehaviour {
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = defL;
                 break;
               case 2:
-                this.gameObject.GetComponent<SpriteRenderer>().sprite = frenchL;
-                break;
-              case 3:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = dabL;
                 break;
-              case 4:
+              case 3:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = rockL;
                 break;
-              case 5:
+              case 4:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = jazzL;
                 break;
               default:
