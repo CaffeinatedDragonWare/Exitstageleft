@@ -106,18 +106,28 @@ MonoBehaviour:
   bow1: {fileID: 21300000, guid: d65613cb66c78b14687e1c1505a73d4a, type: 3}
   defL: {fileID: 21300000, guid: b1916d3bf6671544a92533c33b4075c4, type: 3}
   defR: {fileID: 21300000, guid: 6447d69e323dc6549be0f5f39ce847c8, type: 3}
-  frenchL: {fileID: 21300000, guid: 398a289fcadeb9440bd621a0bdaca92b, type: 3}
-  frenchR: {fileID: 21300000, guid: cfef95bc57c40824dbcd3a2072c465b7, type: 3}
+  duckL: {fileID: 21300000, guid: 398a289fcadeb9440bd621a0bdaca92b, type: 3}
+  duckR: {fileID: 21300000, guid: cfef95bc57c40824dbcd3a2072c465b7, type: 3}
+  duckBackL: {fileID: 21300000, guid: d05a4492b64eaeb4aad097461f1d6713, type: 3}
+  duckBackR: {fileID: 21300000, guid: 28651b5799a90fc45b3f73ca6795ff0e, type: 3}
+  duckBellyL: {fileID: 21300000, guid: 3735733189c1a8941a0147c0023db7b6, type: 3}
+  duckBellyR: {fileID: 21300000, guid: e258c25591078eb40a8fb401969f415d, type: 3}
+  duckBack2L: {fileID: 21300000, guid: 972c4822e83b27243972413608a46ebb, type: 3}
+  duckBack2R: {fileID: 21300000, guid: 8bc6f18257597694facd1902b7b4101b, type: 3}
   dabL: {fileID: 21300000, guid: d1311262d2ab6984b9936fb7d54bfdf2, type: 3}
   dabR: {fileID: 21300000, guid: e34b3c0d6d2cdd84e84a5976d9734ea0, type: 3}
   rockL: {fileID: 21300000, guid: 737a4c0db97ffa948b6a2883084984f7, type: 3}
   rockR: {fileID: 21300000, guid: 0aa92430e24764a479b42f8b6fc4db93, type: 3}
   jazzL: {fileID: 21300000, guid: d14fce88215ceb041adc2a74046d1847, type: 3}
   jazzR: {fileID: 21300000, guid: 2e30e17ad93437947af41883e1ed2854, type: 3}
-  jumpL: {fileID: 21300000, guid: 01be6dae37335c943af2e3abca0507f7, type: 3}
-  jumpR: {fileID: 21300000, guid: 62ea9078047a18c45afbf3884df50f09, type: 3}
-  duckL: {fileID: 21300000, guid: 45b30aec31f9f9c4d995ebcbacf26b8d, type: 3}
-  duckR: {fileID: 21300000, guid: 3d5563920efcc37459e7bf7c8712c3b2, type: 3}
+  jump1L: {fileID: 21300000, guid: c7a7f7e9ac296344eb8d011d81270633, type: 3}
+  jump2L: {fileID: 21300000, guid: 76c66dd92d2b1054d95f0af2599de6c3, type: 3}
+  jump3L: {fileID: 21300000, guid: e4dc29eea0a33b34585e0ae6288a555b, type: 3}
+  jump4L: {fileID: 21300000, guid: 1c91a630c51b71c45b1cd8e0a2694a5c, type: 3}
+  jump1R: {fileID: 21300000, guid: 86434ae12ec5a2244bbf2198630300e4, type: 3}
+  jump2R: {fileID: 21300000, guid: 9a690aa1ee5189b459cc6a95ebe15677, type: 3}
+  jump3R: {fileID: 21300000, guid: 078f91ba94cf3ff4688475e596c91e70, type: 3}
+  jump4R: {fileID: 21300000, guid: 22c2dd88e32376447a4ad9ef187bcc98, type: 3}
   stageLayerMask:
     serializedVersion: 2
     m_Bits: 1024

@@ -24,19 +24,29 @@ public class Movement : MonoBehaviour {
     public Sprite bow1;
     public Sprite defL;
     public Sprite defR;
-    public Sprite frenchL;
-    public Sprite frenchR;
+    public Sprite duckL;
+    public Sprite duckR;
+    public Sprite duckBackL;
+    public Sprite duckBackR;
+    public Sprite duckBellyL;
+    public Sprite duckBellyR;
+    public Sprite duckBack2L;
+    public Sprite duckBack2R;
     public Sprite dabL;
     public Sprite dabR;
     public Sprite rockL;
     public Sprite rockR;
     public Sprite jazzL;
     public Sprite jazzR;
-    public Sprite jumpL;
+    public Sprite jump1L;
+    public Sprite jump2L;
+    public Sprite jump3L;
+    public Sprite jump4L;
     // public Animation anim;
-    public Sprite jumpR;
-    public Sprite duckL;
-    public Sprite duckR;
+    public Sprite jump1R;
+    public Sprite jump2R;
+    public Sprite jump3R;
+    public Sprite jump4R;
 
     int newRandomPose = 0;
     int oldRandomPose = 0;
@@ -49,7 +59,10 @@ public class Movement : MonoBehaviour {
     float NormalOffsetY;
     float DuckingOffsetY;
     float OffsetX;
-    string lastDuckPose = "french";
+    int oldDuckingPose = 0;
+    int newDuckingPose = 0;
+    int oldJumpingPose = 0;
+    int newJumpingPose = 0;
     [SerializeField] public LayerMask stageLayerMask;
     public BoxCollider2D boxCollider2d;
 
@@ -65,7 +78,7 @@ public class Movement : MonoBehaviour {
 
       else if (CharSelect.selection == "Female") {
         OffsetX = 0.135f;
-        DuckingOffsetY = -0.45f;
+        DuckingOffsetY = -0.35f;
         NormalOffsetY = -0.05f;
       }
       //anim = gameObject.GetComponent<Animation>();
@@ -154,11 +167,25 @@ public class Movement : MonoBehaviour {
 
               // jump left
               if (facingLeft == true) {
+
+                oldJumpingPose = newJumpingPose;
+
+                while (oldJumpingPose == newJumpingPose) { // ensures each pose is unique
+                  newJumpingPose = Random.Range(1, 4); // picks random pose
+                }
+
                 JumpLeft();
               }
 
               // jump right
               else if (facingRight == true) {
+
+                oldJumpingPose = newJumpingPose;
+
+                while (oldJumpingPose == newJumpingPose) { // ensures each pose is unique
+                  newJumpingPose = Random.Range(1, 4); // picks random pose
+                }
+
                 JumpRight();
               }
 
@@ -174,16 +201,13 @@ public class Movement : MonoBehaviour {
               // duck right
               if (facingRight == true) {
 
-                if (lastDuckPose == "french") {
-                  this.gameObject.GetComponent<SpriteRenderer>().sprite = duckR;
-                  lastDuckPose = "duck";
+                oldDuckingPose = newDuckingPose;
+
+                while (oldDuckingPose == newDuckingPose) { // ensures each pose is unique
+                  newDuckingPose = Random.Range(1, 4); // picks random pose
                 }
 
-                else {
-                  this.gameObject.GetComponent<SpriteRenderer>().sprite = frenchR;
-                  lastDuckPose = "french";
-                }
-
+                DuckRight();
                 frameCounter = 0;
                 ducking = true;
               }
@@ -191,16 +215,13 @@ public class Movement : MonoBehaviour {
               // duck left
               else if (facingLeft == true) {
 
-                if (lastDuckPose == "french") {
-                  this.gameObject.GetComponent<SpriteRenderer>().sprite = duckL;
-                  lastDuckPose = "duck";
+                oldDuckingPose = newDuckingPose;
+
+                while (oldDuckingPose == newDuckingPose) { // ensures each pose is unique
+                  newDuckingPose = Random.Range(1, 4); // picks random pose
                 }
 
-                else {
-                  this.gameObject.GetComponent<SpriteRenderer>().sprite = frenchL;
-                  lastDuckPose = "french";
-                }
-
+                DuckLeft();
                 frameCounter = 0;
                 ducking = true;
               }
@@ -313,20 +334,93 @@ public class Movement : MonoBehaviour {
 
       // makes character jump left
       public void JumpLeft() {
-        //anim.Play("JumpL");
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = jumpL;
+
+        switch(newJumpingPose) { // implements selected pose
+              case 1:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = jump1L;
+                break;
+              case 2:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = jump2L;
+                break;
+              case 3:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = jump3L;
+                break;
+              case 4:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = jump4L;
+                break;
+              default:
+                break;
+              }
+
         rb.AddForce (Vector2.up * jumpForce);
       }
 
       // makes character jump right
       public void JumpRight() {
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = jumpR;
+
+        switch(newJumpingPose) { // implements selected pose
+              case 1:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = jump1R;
+                break;
+              case 2:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = jump2R;
+                break;
+              case 3:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = jump3R;
+                break;
+              case 4:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = jump4R;
+                break;
+              default:
+                break;
+              }
+
         rb.AddForce (Vector2.up * jumpForce);
       }
 
       // makes character jump forward
       public void JumpForward() {
         rb.AddForce (Vector2.up * jumpForce);
+      }
+
+      public void DuckRight() {
+
+        switch(newDuckingPose) { // implements selected pose
+              case 1:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = duckR;
+                break;
+              case 2:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = duckBackR;
+                break;
+              case 3:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = duckBellyR;
+                break;
+              case 4:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = duckBack2R;
+                break;
+              default:
+                break;
+              }
+      }
+
+      public void DuckLeft() {
+
+        switch(newDuckingPose) { // implements selected pose
+              case 1:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = duckL;
+                break;
+              case 2:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = duckBackL;
+                break;
+              case 3:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = duckBellyL;
+                break;
+              case 4:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = duckBack2L;
+                break;
+              default:
+                break;
+              }
       }
 
       public bool IsGrounded() {

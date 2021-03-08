@@ -39,7 +39,7 @@ public class spotLightSelect : MonoBehaviour {
         if (selection == true && ropeLift.GameStarted == false) { // fixed weird character stuck/crashing issue
 
           GameObject player = GameObject.FindGameObjectWithTag("Player");
-          transform.position = new Vector2(player.transform.position.x, 2.25f);
+          transform.position = new Vector2(player.transform.position.x, 2.15f);
         }
 
     }
@@ -66,6 +66,6 @@ public class spotLightSelect : MonoBehaviour {
         x = 2.5f;
       }
 
-      transform.position = new Vector2(x, 2.25f);
+      transform.position = new Vector2(x, 2.15f);
     }
 }
