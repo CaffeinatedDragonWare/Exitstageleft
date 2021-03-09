@@ -6,13 +6,12 @@ public class tomatoes : MonoBehaviour {
   // enemies
   public GameObject audiencehand1;
   // public GameObject audiencehand2;
-  public Sprite tomatoSplat;
 
   Vector2 whereToSpawn;
   public float spawnRate = 6f;
   float nextSpawn = 1f;
-  float x = 0f; // x value
-  float y = -1f; // y value
+  int x = 0; // x value
+  float y = -1; // y value
   int random = 0;
   float lastX = -13f;
   bool spawned = false;
@@ -27,7 +26,7 @@ public class tomatoes : MonoBehaviour {
       lastX = x;
 
       while (lastX == x) {
-        x = Random.Range(-2f, 2f);
+        x = Random.Range(-2, 2);
       }
 
       whereToSpawn = new Vector2 (x, y); // controls where the tomato is spawned

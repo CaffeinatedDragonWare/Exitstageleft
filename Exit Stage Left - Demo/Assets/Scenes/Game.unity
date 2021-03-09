@@ -914,9 +914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f47976a2119694c9380c7aa3c9fcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audiencehand1: {fileID: 7286720549745611410, guid: 4eff42691716c344d8acbf90fe7bd94d,
+  audiencehand1: {fileID: 9055894401924026289, guid: 11389e783189a58478af439543228dfe,
     type: 3}
-  tomatoSplat: {fileID: 21300000, guid: bece5d1be9fe6de4da04f3b1eb4f2838, type: 3}
   spawnRate: 2
 --- !u!850595691 &573874012
 LightingSettings:
@@ -1195,12 +1194,12 @@ PrefabInstance:
     - target: {fileID: 1754730244748753872, guid: 8fa34028652c8be41bc6ec42bf2342e7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 1754730244748753872, guid: 8fa34028652c8be41bc6ec42bf2342e7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.681
       objectReference: {fileID: 0}
     - target: {fileID: 1754730244748753872, guid: 8fa34028652c8be41bc6ec42bf2342e7,
         type: 3}
