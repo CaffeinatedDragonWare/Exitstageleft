@@ -47,6 +47,7 @@ public class Movement : MonoBehaviour {
     public Sprite jump2R;
     public Sprite jump3R;
     public Sprite jump4R;
+    public Sprite knockOut;
 
     int newRandomPose = 0;
     int oldRandomPose = 0;
@@ -121,6 +122,10 @@ public class Movement : MonoBehaviour {
       }
 
       Grounded = IsGrounded();
+
+      if (tomatoMovement.knockout == true) {
+        knockedOut();
+      }
 
       // return to original pose after ducking
       // frame counter is used to delay ducking animation
@@ -421,6 +426,10 @@ public class Movement : MonoBehaviour {
               default:
                 break;
               }
+      }
+
+      public void knockedOut() {
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = knockOut;
       }
 
       public bool IsGrounded() {
