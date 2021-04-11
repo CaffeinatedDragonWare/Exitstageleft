@@ -19,7 +19,7 @@ public class enemiesSpawn : MonoBehaviour {
     public static List<float> birthplace = new List<float>();
     public static int enemiesSpawned = 0;
     bool ready = false;
-    int difficulty = 3;
+    int Spawnlimit = 3;
     // public static bool walkingRight = false;
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class enemiesSpawn : MonoBehaviour {
         StartCoroutine(delay());
       }
 
-      if (Time.time > nextSpawn && ready == true && Gameover.GameOver == false && enemiesSpawned <= difficulty) {
+      if (Time.time > nextSpawn && ready == true && Gameover.GameOver == false && enemiesSpawned <= Spawnlimit) {
 
         nextSpawn = Time.time + spawnRate; // controls amount of enemies spawned at a time
 //        if (enemyMovement.PlayerPushed == true){

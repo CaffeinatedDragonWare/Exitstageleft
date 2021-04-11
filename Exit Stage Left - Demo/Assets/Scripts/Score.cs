@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour {
 
     public Text scoreBox;
-    int score = 0;
+    public static int score = 0;
     public static string highScoreBox = "000000000";
     public static string yourScoreBox = "000000000";
     float scoreUpdateInterval = 0;
