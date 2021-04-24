@@ -7,10 +7,12 @@ public class spotLightSelect : MonoBehaviour {
     private Vector2 startTouchPosition, endTouchPosition;
     public static float x = 0f;
     public static bool selection = false;
+    int displayWidth;
+    float touchRatio;
 
-    // Start is called before the first frame update
     void Start() {
-
+      displayWidth = Display.main.systemWidth;
+      touchRatio = displayWidth / 9.6f;
     }
 
     // Update is called once per frame
@@ -21,7 +23,7 @@ public class spotLightSelect : MonoBehaviour {
           if (Input.touchCount > 0) {
 
     		      startTouchPosition = Input.GetTouch(0).position;
-              x = (startTouchPosition.x / 200) - 4.9f;
+              x = (startTouchPosition.x / touchRatio) - 4.9f;
               spawnPoints();
 
           }
@@ -29,9 +31,9 @@ public class spotLightSelect : MonoBehaviour {
           if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
 
     		      endTouchPosition = Input.GetTouch(0).position;
-              x = (endTouchPosition.x / 200) - 4.9f;
+              x = (endTouchPosition.x / touchRatio) - 4.9f;
               spawnPoints();
-              selection = true;
+              // selection = true;
             }
 
         }
