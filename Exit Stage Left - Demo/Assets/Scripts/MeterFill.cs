@@ -22,14 +22,14 @@ public class MeterFill : MonoBehaviour {
         level += levelIncrease;
       }
 
-      if (transform.localScale.y >= 0.3f) {
+      if (transform.localScale.y >= 0.247f) {
         attentionMeter.attention = 2;
-        levelIncrease = 40;
+        levelIncrease = 100;
       }
 
-      if (transform.localScale.y >= 0.757f) {
+      if (transform.localScale.y >= 0.747f) {
         attentionMeter.attention = 3;
-        levelIncrease = 60;
+        levelIncrease = 200;
       }
 
       if (transform.localScale.y >= 1.19f) {

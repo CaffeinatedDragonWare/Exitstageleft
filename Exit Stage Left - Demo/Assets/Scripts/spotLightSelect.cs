@@ -33,7 +33,7 @@ public class spotLightSelect : MonoBehaviour {
     		      endTouchPosition = Input.GetTouch(0).position;
               x = (endTouchPosition.x / touchRatio) - 4.9f;
               spawnPoints();
-              // selection = true;
+              selection = true;
             }
 
         }

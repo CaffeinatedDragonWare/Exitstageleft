@@ -14,6 +14,7 @@ public class Score : MonoBehaviour {
     string placeHolders = "00000000";
     public static string highScorePlaceHolders = "00000000";
     public static int highScore = 0;
+    public static int scoreMultiplier = 1;
     // Start is called before the first frame update
     void Start() {
       scoreBox.text = "000000000"; // nine 0s
@@ -26,9 +27,9 @@ public class Score : MonoBehaviour {
 
       if (scoreUpdateInterval > 0.1 && Gameover.GameOver == false && ropeLift.GameStarted == false) {
         scoreUpdateInterval = 0;
-        score += 1;
+        score += scoreMultiplier;
 
-        if (score == placeHolderLimit) {
+        if (score >= placeHolderLimit) {
           placeHolders = placeHolders.Remove(placeHolders.Length-1);
           placeHolderLimit *= 10;
         }

@@ -21,14 +21,17 @@ public class attentionMeter : MonoBehaviour {
 
       if (attention < 1) {
         this.gameObject.GetComponent<SpriteRenderer>().sprite = bummer;
+        Score.scoreMultiplier = 1;
       }
 
       if (attention == 2) {
         this.gameObject.GetComponent<SpriteRenderer>().sprite = average;
+        Score.scoreMultiplier = 6;
       }
 
       if (attention == 3) {
         this.gameObject.GetComponent<SpriteRenderer>().sprite = hype;
+        Score.scoreMultiplier = 11;
       }
     }
 }
